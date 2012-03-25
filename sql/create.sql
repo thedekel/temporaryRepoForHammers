@@ -49,13 +49,11 @@ CREATE TABLE Comments(
 ALTER TABLE Comments ENGINE = InnoDB;
 CREATE TABLE Likes(
     parent VARCHAR(255) NOT NULL,
-    comOwner VARCHAR(255) NOT NULL,
-    comTime DATETIME NOT NULL,
-    comPinOwner VARCHAR(255) NOT NULL,
-    comPinTime DATETIME NOT NULL,
+    pinOwner VARCHAR(255) NOT NULL,
+    pinTime DATETIME NOT NULL,
     FOREIGN KEY (parent) REFERENCES Users(email) ,
-    FOREIGN KEY (comOwner, comTime, comPinOwner, comPinTime)  REFERENCES Comments(owner, dateAndTime, about, pinTime),
-    PRIMARY KEY (parent, comOwner, comTime, comPinOwner, comPinTime)
+    FOREIGN KEY (pinOwner, pinTime)  REFERENCES Pushpins(owner, dateAndTime),
+    PRIMARY KEY (parent, pinOwner, pinTime)
 );
 ALTER TABLE Likes ENGINE = InnoDB;
 CREATE TABLE Watches(
