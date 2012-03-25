@@ -1,45 +1,70 @@
---add "IF NOT EXIST" and such
-USE cbit;
-CREATE TABLE User(
-    email VARCHAR(255) PRIMARY KEY NOT NULL,
+CREATE DATABASE IF NOT EXISTS cs4400_group53;
+USE cs4400_group53;
+CREATE TABLE Users(
+    email VARCHAR(255) NOT NULL,
     name VARCHAR(30) NOT NULL,
-    pin INTEGER NOT NULL
+    pin INTEGER NOT NULL,
+    PRIMARY KEY(email)
 );
 CREATE TABLE Follow(
-    parent email NOT Null,
-    child email NOT Null
-    -- add constraints
+    parent VARCHAR(255) NOT NULL,
+    child VARCHAR(255) NOT NULL,
+    FOREIGN KEY (parent) REFERENCES Users(email) ,
+    FOREIGN KEY (child)  REFERENCES Users(email) 
+);
+ALTER TABLE Follow  ENGINE = InnoDB;
+CREATE TABLE Categories(
+    name VARCHAR(50) UNIQUE NOT NULL,
+    PRIMARY KEY(name)
 );
 CREATE TABLE CorkBoards(
-    FOREIGN KEY (email) REFERENCES User(email), --look up exact syntax
+    owner VARCHAR(255) NOT NULL,
+    FOREIGN KEY (owner) REFERENCES Users(email), 
     title VARCHAR(100) NOT NULL,
-    -- user can't have two of the same title
+    category VARCHAR(50) NOT NULL,
     FOREIGN KEY (category) REFERENCES Categories(name),
-    password VARCHAR(20) 
+    password VARCHAR(20),
+    PRIMARY KEY (owner, title)
 );
-CREATE TABLE Categories(
-    name VARCHAR(50) UNIQUE NOT NULL PRIMARY,
-);
+ALTER TABLE CorkBoards ENGINE = InnoDB;
 CREATE TABLE Pushpins(
-    --add tags
-    link VARCHAR(255) NOT NULL, -- why is this half-underlined?
-    desc TEXT NOT NULL,
+    link VARCHAR(255) NOT NULL, 
+    descr TEXT NOT NULL,
     dateAndTime DATETIME NOT NULL,
-    FOREIGN KEY owner REFERENCES CorkBoards(email) PRIMARY
+    owner VARCHAR(255) NOT NULL,
+    FOREIGN KEY (owner) REFERENCES CorkBoards(owner),
+    PRIMARY KEY(owner, dateAndTime)
 );
+ALTER TABLE Pushpins ENGINE = InnoDB;
 CREATE TABLE Comments(
     text TEXT NOT NULL,
     dateAndTime DATETIME NOT NULL,
-    FOREIGN KEY owner REFERENCES User(email),
-    FOREIGN KEY about REFERENCES Pushpins(owner)
+    owner VARCHAR(255) NOT NULL,
+    about VARCHAR(255) NOT NULL,
+    pinTime DATETIME NOT NULL,
+    FOREIGN KEY (owner) REFERENCES Users(email),
+    FOREIGN KEY (about, pinTime) REFERENCES Pushpins(owner, dateAndTime),
+    PRIMARY KEY(owner, dateAndTime, about, pinTime)
 );
+ALTER TABLE Comments ENGINE = InnoDB;
 CREATE TABLE Likes(
-    parent email NOT NULL,
-    child owner NOT NULL
-    -- how to reference pushpin
+    parent VARCHAR(255) NOT NULL,
+    comOwner VARCHAR(255) NOT NULL,
+    comTime DATETIME NOT NULL,
+    comPinOwner VARCHAR(255) NOT NULL,
+    comPinTime DATETIME NOT NULL,
+    FOREIGN KEY (parent) REFERENCES Users(email) ,
+    FOREIGN KEY (comOwner, comTime, comPinOwner, comPinTime)  REFERENCES Comments(owner, dateAndTime, about, pinTime),
+    PRIMARY KEY (parent, comOwner, comTime, comPinOwner, comPinTime)
 );
+ALTER TABLE Likes ENGINE = InnoDB;
 CREATE TABLE Watches(
-    parent email NOT NULL,
-    child email NOT NULL,
-    -- how to reference corkboard
+    parent VARCHAR(255) NOT NULL,
+    boardOwner VARCHAR(255) NOT NULL,
+    boardTitle VARCHAR(50) NOT NULL,
+    FOREIGN KEY (parent) REFERENCES Users(email) ,
+    FOREIGN KEY (boardOwner, boardTitle)  REFERENCES CorkBoards(owner, title),
+    PRIMARY KEY(parent, boardOwner, boardTitle)
+
 );
+ALTER TABLE Watches ENGINE = InnoDB;
