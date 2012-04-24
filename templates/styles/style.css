@@ -20,7 +20,12 @@ div,p,h1,h2,h3,h4,h5,ul,li,ol,img
 a
 {
  text-decoration:none;
- color:#666666;
+ color:#333333;
+}
+a:visited
+{
+ text-decoration:none;
+ color:#669999;
 }
 a:hover
 {
@@ -28,12 +33,32 @@ a:hover
  color:#000000;
 }
 
+#main_content
+{
+width: 60%;
+background-color: #E0E0E0;
+text-align: left;
+padding: 10px;
+border-radius: 15px;
+}
+#main_content h2
+{
+display: inline;
+}
+#main_content a button
+{
+display: inline;
+float: right;
+}
+
+
 #board_list 
 {
-	background-color: #DBEFF0;
-	border-top: 5px;
-	border-color: #AAA;
-	border-style: solid;
+background-color: #DBEFF0;
+border: 5px;
+border-bottom: 0;
+border-color: #AAA;
+border-style: solid;
 
 }
 #board_list .b_node
@@ -49,3 +74,26 @@ border-color: #AAA;
 background-color: #69F;	
 }
 
+#my_boards
+{
+background-color: #DBEFF0;
+border: 5px;
+border-color: #AAA;
+border-style: solid;
+}
+
+#my_boards .my_board
+{
+font-size:20 px;
+
+}
+
+#my_boards .my_board h4
+{
+display:inline;
+}
+#my_boards .my_board p
+{
+display:inline;
+padding-left: 4px;
+}
