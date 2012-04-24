@@ -5,7 +5,7 @@ body{
 	margin:0 auto;
 	padding:0px 0px 0px 0px;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:11 px;
+	font-size:12 px;
 	margin-bottom: 0px;
   	background:#F8F8F8;
 	}
@@ -15,6 +15,7 @@ div,p,h1,h2,h3,h4,h5,ul,li,ol,img
 	margin:0px auto;
 	padding:0px 0px 0px 0px;
 	border:0px;
+	text-align: center;
 	}
 a
 {
@@ -24,4 +25,27 @@ a
 a:hover
 {
  text-decoration:underline;
+ color:#000000;
 }
+
+#board_list 
+{
+	background-color: #DBEFF0;
+	border-top: 5px;
+	border-color: #AAA;
+	border-style: solid;
+
+}
+#board_list .b_node
+{
+font-size:20 px;
+border-style: solid;
+border-width: 0px 0px 5px 0px;
+border-color: #AAA;	
+}
+
+#board_list .b_node:hover
+{
+background-color: #69F;	
+}
+
