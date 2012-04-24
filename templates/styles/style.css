@@ -73,6 +73,16 @@ border-color: #AAA;
 {
 background-color: #69F;	
 }
+#board_list .b_node h4
+{
+display: inline;
+}
+
+#board_list .b_node .private
+{
+display: inline;
+color: #FF3222
+}
 
 #my_boards
 {
@@ -85,7 +95,8 @@ border-style: solid;
 #my_boards .my_board
 {
 font-size:20 px;
-
+padding-top: 5px;
+padding-bottom: 5px;
 }
 
 #my_boards .my_board h4
