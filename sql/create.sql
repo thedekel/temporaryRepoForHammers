@@ -66,12 +66,3 @@ CREATE TABLE Watches(
 
 );
 ALTER TABLE Watches ENGINE = InnoDB;
-CREATE TRIGGER email_valid BEFORE INSERT ON Users
-  FOR EACH ROW BEGIN
-    IF NEW.email LIKE '%@%.%' THEN
-    ELSE
-      SET NEW.email = NULL;
-    END IF;
-  END;
-
-

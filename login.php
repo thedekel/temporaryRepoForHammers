@@ -7,10 +7,10 @@
     <div id='glob_container'>
       <div id='header'>
         <h1>Login</h1>
-        <form action='/home.php' method='post'>
+        <form action='home.php' method='post'>
           <table width="273" height="111" border="0" align="center">
             <tr>
-              <td width="87">User Name:</td>
+              <td width="87">E-mail:</td>
               <td width="176"><input name='uname' type='text' id='uname_box' /></td>
             </tr>
             <tr>
