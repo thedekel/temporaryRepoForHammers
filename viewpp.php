@@ -1,0 +1,39 @@
+<html>
+  <head>
+  <link rel="stylesheet" href="styles/style.css" />
+    <title></title>
+  </head>
+  <body>
+    <div id='glob_container'>
+      <div id='header'>
+        <h2>Sybil Crawley</h2><button id='follow_btn'>Follow</button>
+        <h4>Pinned January 16, 2012 at 11:29AM on <a href='board1.html'>Pools</a></h4>
+      </div>
+      <div id='main_content'>
+        <div id='pic'>
+          <img src='img.jpg' />
+          <p id='desc'>I love the tile work around this pool</p>
+          <p id='tags'><strong>Tags: architecture, pool, stone</strong></p>
+        </div>
+        <div id='likes'>
+          <img src='like.jpg' />
+          <p id='likers'><strong>Charles Carson, John Bates, and Anna Smith</strong></p>
+          <button id='like_btn'>Like!</button>
+        </div>
+        <div id='coms'>
+          <form action='viewpp.html' method='post'>
+            <textarea rows='4' cols='30' name='com' placeholder='Enter Comment'></textarea>
+            <input type='submit' id='post_btn' value='Post Comment' />
+          </form>
+          <div class='comment'>
+            <p><strong>Mary Crawley</strong><span class='comment-text'>Is that a hot tub in the corner?</span></p>
+          </div>
+          <div class='comment'>
+            <p><strong>Sybil Crawley</strong><span class='comment-text'>Why not!?</span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

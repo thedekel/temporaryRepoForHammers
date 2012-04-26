@@ -36,16 +36,20 @@ if (mysql_num_rows($result) == 1){
   $sql4 = "SELECT `CorkBoards`.owner, title, dateAndTime FROM `CorkBoards` INNER JOIN Pushpins WHERE `password` IS NOT NULL ORDER BY `Pushpins`.dateAndTime DESC LIMIT 0, 4";
   $result4 = mysql_query($sql4);
   while ($row = mysql_fetch_array($result4)){
+	  $sql5 = "SELECT * FROM Users WHERE email='{$row['owner']}'";
+	  $result5 = mysql_query($sql5);
+	  $res5 = mysql_fetch_array($result5);
+
   ?>
-          <a href='board_1.html'>
+  <a href='viewcb.php?owner=<?php echo($row['owner']) ?>&title=<?php echo($row['title']) ?>&user=<?php echo($uname) ?>'>
           <div class='b_node'>
             <h4><?php echo($row['title']) ?></h4>
-            <p>Updated by <em><?php echo($row['owner']) ?></em> on <em><?php echo($row['dateAndTime']) ?></em> at <em>1:49 PM</em></p>
+			<p>Updated by <em><?php echo($res5['name']) ?></em> on <em><?php echo($row['dateAndTime']) ?></em> at <em>1:49 PM</em></p>
           </div>
         </a>
             <?php } ?>
         </div>
-        <h2>My CorkBoards</h2><a href='add_board.html'><button name='add_board' value='Add CorkBoard'>Add CorkBoard</button></a>
+        <h2>My CorkBoards</h2><a href='add_board.php'><button name='add_board' value='Add CorkBoard'>Add CorkBoard</button></a>
         <div id='my_boards'>
 <?php
   $sql = "SELECT * FROM `CorkBoards` WHERE `owner` = '{$uname}'";
@@ -59,7 +63,7 @@ if (mysql_num_rows($result) == 1){
       $num = $res[0];
     }
 ?>
-<a href='viewcb.php?owner=<?php echo($uname) ?>&title=<?php echo($row['title']) ?>'>
+<a href='viewcb.php?owner=<?php echo($uname) ?>&title=<?php echo($row['title']) ?>&user=<?php echo($uname) ?>'>
           <div class='my_board'>
             <h4><?php echo($row['title']); ?></h4>
             <?php
@@ -73,7 +77,7 @@ if (mysql_num_rows($result) == 1){
 <?php } ?>
         </div>
         <div id='search_box'>
-          <form method='get' action='search.html'>
+			<form method='get' action='search.php'>
             <input type='text' placeholder='Search description, tags and Corkboard category' name='q' /><input type='submit' value='Search' />
           </form>
         </div>

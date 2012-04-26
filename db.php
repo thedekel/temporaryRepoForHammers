@@ -1,4 +1,4 @@
 <?php
-$db_name = 'root';
-$db_pass = 'reindeerflotilla';
+$db_name = 'cs4400_group53';
+$db_pass = 'VYVgRPwj';
 ?>
